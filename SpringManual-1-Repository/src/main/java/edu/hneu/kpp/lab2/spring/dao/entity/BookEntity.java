@@ -1,6 +1,7 @@
 package edu.hneu.kpp.lab2.spring.dao.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -14,6 +15,8 @@ public class BookEntity {
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private AuthorEntity authorEntity;
+    @ManyToMany(mappedBy = "bookEntities", fetch = FetchType.EAGER)
+    private Set<PublishingHouseEntity> publishingHouseEntities;
 
     public BookEntity() {
     }
@@ -39,12 +42,20 @@ public class BookEntity {
         this.title = title;
     }
 
-    public AuthorEntity getAuthor() {
+    public AuthorEntity getAuthorEntity() {
         return authorEntity;
     }
 
-    public void setAuthor(AuthorEntity author) {
-        this.authorEntity = author;
+    public void setAuthorEntity(AuthorEntity authorEntity) {
+        this.authorEntity = authorEntity;
+    }
+
+    public Set<PublishingHouseEntity> getPublishingHouseEntities() {
+        return publishingHouseEntities;
+    }
+
+    public void setPublishingHouseEntities(Set<PublishingHouseEntity> publishingHouseEntities) {
+        this.publishingHouseEntities = publishingHouseEntities;
     }
 
     @Override
