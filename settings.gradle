@@ -1,3 +1,5 @@
 rootProject.name = 'SpringManual-1'
 include 'SpringManual-1-Repository'
 include 'SpringManual-1-Service'
+include 'SpringManual-1-Webapp'
+
