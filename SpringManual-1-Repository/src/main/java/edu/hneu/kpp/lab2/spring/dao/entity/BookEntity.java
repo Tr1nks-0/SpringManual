@@ -11,21 +11,16 @@ public class BookEntity {
     private int id;
     @Column(name = "title")
     private String title;
-    @Column(name = "author")
-    String author;
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
+    private AuthorEntity authorEntity;
 
     public BookEntity() {
     }
 
-    public BookEntity(Integer id, String title, String author) {
-        this.id = id;
+    public BookEntity(String title, AuthorEntity authorEntity) {
         this.title = title;
-        this.author = author;
-    }
-
-    public BookEntity(String title, String author) {
-        this.title = title;
-        this.author = author;
+        this.authorEntity = authorEntity;
     }
 
     public Integer getId() {
@@ -44,16 +39,16 @@ public class BookEntity {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public AuthorEntity getAuthor() {
+        return authorEntity;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor(AuthorEntity author) {
+        this.authorEntity = author;
     }
 
     @Override
     public String toString() {
-        return "BookEntity [id=" + id + ", title=" + title + ", author=" + author + "]";
+        return "BookEntity [id=" + id + ", title=" + title + ", author=" + authorEntity.toString() + "]";
     }
 }
