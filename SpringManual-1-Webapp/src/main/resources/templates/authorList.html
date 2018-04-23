@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="navMenu :: navMenuHeader"></header>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Books</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="authorListModel" type="java.util.List"*/-->
+    <!--/*@thymesVar id="author" type="edu.hneu.kpp.lab2.spring.dao.entity.AuthorEntity"*/-->
+    <tr th:each="author:${authorListModel}">
+        <td>
+            <a th:href="@{/authorController(id=${author.id})}" th:text="${author.name}"></a>
+        </td>
+        <td>
+            <a th:href="@{/authorController(id=${author.id})}" th:text="${author.surname}"></a>
+        </td>
+        <td>
+            <th:block th:each="book:${author.bookEntities}">
+                <a th:href="@{/bookController(id=${book.id})}" th:text="${book.title}"></a>
+            </th:block>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+

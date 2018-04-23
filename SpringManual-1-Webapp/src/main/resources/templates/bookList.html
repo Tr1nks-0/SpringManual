@@ -5,19 +5,30 @@
     <title>Title</title>
 </head>
 <body>
+<header th:replace="navMenu :: navMenuHeader"></header>
 <table>
     <thead>
     <tr>
         <th>Title</th>
         <th>Author</th>
+        <th>Publishing House</th>
     </tr>
     </thead>
     <tbody>
     <!--/*@thymesVar id="bookListModel" type="java.util.List"*/-->
     <!--/*@thymesVar id="book" type="edu.hneu.kpp.lab2.spring.dao.entity.BookEntity"*/-->
-    <tr th:each="book:${ bookListModel}">
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.author}"></td>
+    <tr th:each="book:${bookListModel}">
+        <td>
+            <a th:href="@{/bookController(id=${book.id})}" th:text="${book.title}"></a>
+        </td>
+        <td>
+            <a th:href="@{/authorController(id=${book.authorEntity.id})}" th:text="${book.authorEntity}"></a>
+        </td>
+        <td>
+            <th:block th:each="pHouse:${book.publishingHouseEntities}">
+                <a th:href="@{/pubHouseController(id=${pHouse.id})}" th:text="${pHouse.name}"></a>
+            </th:block>
+        </td>
     </tr>
     </tbody>
 </table>
