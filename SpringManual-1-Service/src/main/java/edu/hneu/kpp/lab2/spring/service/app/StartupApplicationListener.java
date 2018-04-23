@@ -21,26 +21,10 @@ public class StartupApplicationListener implements ApplicationRunner {
     private BookService bookService;
 
     public void test() {
-
-        //BookEntity book1 = new BookEntity(1, "The Brothers Karamazov", "Fyodor Dostoevsky");
-        BookEntity book1 = new BookEntity();
-        book1.setTitle("The Brothers Karamazov");
-        book1.setAuthor("Fyodor Dostoevsky");
-
-//    BookEntity book2 = new BookEntity(2, "War and Peace", "Leo Tolstoy");
-        BookEntity book2 = new BookEntity();
-        book2.setTitle("War and Peace");
-        book2.setAuthor("Leo Tolstoy");
-
-//    BookEntity book3 = new BookEntity(3, "Pride and Prejudice", "Jane Austen");
-        BookEntity book3 = new BookEntity();
-        book3.setTitle("Pride and Prejudice");
-        book3.setAuthor("Jane Austen");
-
         System.out.println("###### Saving book to db start ######");
-        bookService.save(book1);
-        bookService.save(book2);
-        bookService.save(book3);
+        BookEntity book1 = bookService.save(new BookEntity("The Brothers Karamazov", "Fyodor Dostoevsky"));
+        BookEntity book2 = bookService.save(new BookEntity("War and Peace", "Leo Tolstoy"));
+        BookEntity book3 = bookService.save(new BookEntity("Pride and Prejudice", "Jane Austen"));
         System.out.println("###### Saving book to db finish ######");
         System.out.println("Find all :");
         List<BookEntity> books1 = bookService.findAll();
