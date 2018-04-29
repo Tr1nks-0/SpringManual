@@ -1,5 +1,7 @@
 package edu.hneu.kpp.lab2.spring.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class AuthorEntity {
     private String name;
     @Column(name = "surname")
     private String surname;
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "authorEntity", cascade = CascadeType.ALL)
     private Set<BookEntity> bookEntities;
 

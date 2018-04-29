@@ -1,5 +1,7 @@
 package edu.hneu.kpp.lab2.spring.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class PublishingHouseEntity {
     private int id;
     @Column(name = "name", nullable = false)
     private String name;
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "book2publishing_house",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),

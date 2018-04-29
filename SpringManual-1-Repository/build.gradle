@@ -3,7 +3,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
     compile("org.hibernate:hibernate-entitymanager:${hibernateEntitymanagerVersion}")
     compile("mysql:mysql-connector-java:${mysqlConnectorJavaVersion}")
-
+    compile("com.fasterxml.jackson.core:jackson-annotations:2.9.5")
     runtime("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }

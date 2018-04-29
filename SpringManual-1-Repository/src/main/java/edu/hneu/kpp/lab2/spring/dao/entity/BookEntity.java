@@ -1,5 +1,10 @@
 package edu.hneu.kpp.lab2.spring.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,8 +18,13 @@ public class BookEntity {
     @Column(name = "title")
     private String title;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     private AuthorEntity authorEntity;
+    @JsonManagedReference
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @ManyToMany(mappedBy = "bookEntities", fetch = FetchType.EAGER)
     private Set<PublishingHouseEntity> publishingHouseEntities;
 
