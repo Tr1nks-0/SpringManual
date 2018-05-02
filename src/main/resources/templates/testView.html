@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="'Hello ' +((${testModel!=null && testModel.name!=null && !#strings.isEmpty(testModel.name)})?(${testModel.name}):'Spring')"></h1>
+<form th:action="@{/}" method="post" th:object="${testModel}">
+    <label for="nameInput">Enter You name</label>
+    <input id="nameInput" th:field="*{name}" type="text">
+    <button type="submit">Confirm</button>
+</form>
+</body>
+</html>
